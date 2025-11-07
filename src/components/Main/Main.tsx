@@ -157,11 +157,11 @@ export const Main = () => {
               disabled={loading}
             />
             <div>
-              {canSend && (
+              {/* {canSend && ( */}
                 <button type="submit" disabled={!canSend} aria-label="Send prompt">
                   <img src={assets.send_icon} alt="" />
                 </button>
-              )}
+              {/* )} */}
             </div>
           </form>
           {error && <p className="error-banner">{error}</p>}
