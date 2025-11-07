@@ -22,7 +22,7 @@
 }
 .main .greet {
   margin: 50px, 0px;
-  font-size: 56px;
+  font-size: 36px;
   color: #c4c7c5;
   font-weight: 500;
   padding: 20px;
@@ -97,10 +97,21 @@
   gap: 15px;
 }
 .main .bottom-info {
-  font-size: 13px;
+  font-size: 23px;
   margin: 15px auto;
   text-align: center;
   font-weight: 300;
+  color: black;
+}
+.main .bottom-info a{
+    color: black;
+      text-decoration: underline;
+      
+
+
+}
+.main .bottom-info p{
+  font-size: 15px;
 }
 .result {
   padding: 0px 5%;

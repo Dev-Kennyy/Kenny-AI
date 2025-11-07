@@ -2,6 +2,7 @@ import "./Main.css";
 import { assets } from "../../assets/assets";
 import { useAppContext } from "../../context/context";
 
+
 export const Main = () => {
   const {
     onSent,
@@ -16,7 +17,7 @@ export const Main = () => {
   return (
     <div className="main">
       <div className="nav">
-        <p>Gemni</p>
+        <p>KennyAI</p>
         <img src={assets.user_icon} alt="" />
       </div>
       <div className="main-container">
@@ -24,29 +25,31 @@ export const Main = () => {
           <>
             <div className="greet">
               <p>
-                <span>Hello, Dev.</span>
+                <span>Hello Dear,</span>
               </p>
-              <p>How can I help you today?</p>
+              <p>Thank you for using KennyAI</p>
             </div>
             <div className="cards">
               <div className="card">
                 <p>
                   Hey Champs, thank you for trusting KennyAI for assistant, i
-                  will be able to help and give you insight so feel free
+                  will be able to help and give you insight so feel free to use
+                  me !
                 </p>
                 <img src={assets.compass_icon} alt="" />
               </div>
               <div className="card">
                 <p>
                   Will you like to know more about the Developer of this AI
-                  Application? It is good to know him
+                  Application? I am Kehinde Salimonu, a Frontend Enthusiast.
+                  Recommend me !
                 </p>
                 <img src={assets.bulb_icon} alt="" />
               </div>
               <div className="card">
                 <p>
-                  Browse Kehinde Salimonu on LinkedIn, give him a follow and
-                  endorse him. Thank you
+                  Browse Kehinde Salimonu on LinkedIn, write your feedback give
+                  me a follow and endorse me. Thank you
                 </p>
                 <img src={assets.message_icon} alt="" />
               </div>
@@ -91,16 +94,22 @@ export const Main = () => {
               {/* <img src={assets.gallery_icon} alt="" /> */}
               {/* <img src={assets.mic_icon} alt="" /> */}
               {input ? (
-                <img src={assets.send_icon} alt="" onClick={() => onSent(input)} />
+                <img
+                  src={assets.send_icon}
+                  alt=""
+                  onClick={() => onSent(input)}
+                />
               ) : (
                 ""
               )}
             </div>
           </div>
-          <p className="bottom-info">
-            Sometimes, my insights and information may not be totally accurate.
-            I am still in development stage
-          </p>
+          <div className="bottom-info">
+            <p>
+              Give me a follow on{" "}
+              <a href="linkedin.com/in/kehinde-salimonu-b7a956249/">LinkedIn</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
