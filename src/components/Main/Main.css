@@ -259,7 +259,7 @@
   background-color: #eff4fb;
   padding: 12px 20px;
   border-radius: 999px;
-  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .search-box input {
