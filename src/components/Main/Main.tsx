@@ -9,23 +9,23 @@ const QUICK_ACTIONS = [
     description: 'I am a Creative Developer, i build Web Applications for individuals, companies and association',
     icon: assets.compass_icon,
   },
-  {
-    title: "Project",
-    description:
-      "This is actually built to enhance my expertise and interaction with a Third party API",
-    icon: assets.bulb_icon,
-  },
+  // {
+  //   title: "Project",
+  //   description:
+  //     "This is actually built to enhance my expertise and interaction with a Third party API",
+  //   icon: assets.bulb_icon,
+  // },
   {
     title: "Career & Community",
     description:
       "Hire me or Recommend me",
     icon: assets.message_icon,
   },
-  {
-    title: "Tech stack",
-    description: "React • TypeScript • Vite • GenAI • Accessible design",
-    icon: assets.code_icon,
-  },
+  // {
+  //   title: "Tech stack",
+  //   description: "React • TypeScript • Vite • GenAI • Accessible design",
+  //   icon: assets.code_icon,
+  // },
 ];
 
 export const Main = () => {
