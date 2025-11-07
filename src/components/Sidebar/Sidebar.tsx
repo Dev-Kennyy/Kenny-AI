@@ -1,55 +1,122 @@
 import "./Sidebar.css";
 import { assets } from "../../assets/assets";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useAppContext } from "../../context/context";
+
 export const Sidebar = () => {
-  const [extended, setExtended] = useState<boolean>(false);
-    const { onSent, prevPrompt, setRecentPrompt, newChat } = useAppContext();
-    const loadPrompts = async (prompt : string) => {
-        setRecentPrompt(prompt)
-        await onSent(prompt)
+  const [isExtended, setIsExtended] = useState<boolean>(true);
+  const {
+    onSent,
+    prevPrompt,
+    setRecentPrompt,
+    newChat,
+    closeSidebar,
+    toggleSidebar,
+    isSidebarOpen,
+  } = useAppContext();
+
+  const handleMenuClick = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 960) {
+      toggleSidebar();
+      return;
     }
+    setIsExtended((prev) => !prev);
+  }, [toggleSidebar]);
+
+  const loadPrompts = useCallback(
+    async (prompt: string) => {
+      setRecentPrompt(prompt);
+      try {
+        await onSent(prompt);
+      } catch (error) {
+        console.error("Failed to load prompt", error);
+      } finally {
+        if (typeof window !== "undefined" && window.innerWidth < 960) {
+          closeSidebar();
+        }
+      }
+    },
+    [closeSidebar, onSent, setRecentPrompt]
+  );
+
+  const handleNewChat = useCallback(() => {
+    newChat();
+    if (typeof window !== "undefined" && window.innerWidth < 960) {
+      closeSidebar();
+    }
+  }, [closeSidebar, newChat]);
+
   return (
-    <div className="sidebar">
-      <div className="top">
-        <img
-          onClick={() => setExtended((prev) => !prev)}
-          className="menu"
-          src={assets.menu_icon}
-          alt=""
+    <>
+      <aside
+        className="sidebar"
+        data-open={isSidebarOpen}
+        data-extended={isExtended}
+      >
+        <div className="top">
+          <button
+            type="button"
+            onClick={handleMenuClick}
+            className="menu"
+            aria-label="Toggle sidebar"
+          >
+            <img src={assets.menu_icon} alt="" />
+          </button>
+          <button
+            type="button"
+            onClick={handleNewChat}
+            className="new-chat"
+          >
+            <img src={assets.plus_icon} alt="" />
+            {isExtended ? <span>New Chat</span> : null}
+          </button>
+          {isExtended ? (
+            <div className="recent">
+              <p className="recent-title">Recent</p>
+              {prevPrompt.length > 0 ? (
+                prevPrompt
+                  .slice()
+                  .reverse()
+                  .map((item, number) => (
+                    <button
+                      type="button"
+                      className="recent-entry"
+                      onClick={() => loadPrompts(item)}
+                      key={number}
+                    >
+                      <img src={assets.message_icon} alt="" />
+                      <span>{item.length > 42 ? `${item.slice(0, 39)}…` : item}</span>
+                    </button>
+                  ))
+              ) : (
+                <p className="recent-empty">No conversations yet</p>
+              )}
+            </div>
+          ) : null}
+        </div>
+        <div className="bottom">
+          <button type="button" className="bottom-item recent-entry">
+            <img src={assets.question_icon} alt="" />
+            {isExtended ? <span>Help</span> : null}
+          </button>
+          <button type="button" className="bottom-item recent-entry">
+            <img src={assets.history_icon} alt="" />
+            {isExtended ? <span>Activity</span> : null}
+          </button>
+          <button type="button" className="bottom-item recent-entry">
+            <img src={assets.setting_icon} alt="" />
+            {isExtended ? <span>Settings</span> : null}
+          </button>
+        </div>
+      </aside>
+      {isSidebarOpen && (
+        <button
+          type="button"
+          className="sidebar-overlay"
+          onClick={closeSidebar}
+          aria-label="Close sidebar"
         />
-        <div onClick={() =>newChat()} className="new-chat">
-          <img src={assets.plus_icon} alt="" />
-          {extended ? <p>New Chat</p> : null}
-        </div>
-        {extended ? (
-          <div className="recent">
-            <p className="recent-title">Recent</p>
-            {prevPrompt.map((item, number) => {
-              return (
-                <div className="recent-entry" onClick={() => loadPrompts(item)} key={number}>
-                  <img src={assets.message_icon} alt="" />
-                      <p>{item.slice(0, 18)} ...</p>
-                </div>
-              );
-            })}
-          </div>
-        ) : null}
-      </div>
-      <div className="bottom">
-        <div className="bottom-item recent-entry">
-          <img src={assets.question_icon} alt="" />
-          {extended ? <p>Help</p> : null}
-        </div>
-        <div className="bottom-item recent-entry">
-          <img src={assets.history_icon} alt="" />
-          {extended ? <p>Activity</p> : null}
-        </div>
-        <div className="bottom-item recent-entry">
-          <img src={assets.setting_icon} alt="" />
-          {extended ? <p>Settings</p> : null}
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };

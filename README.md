@@ -1,73 +1,60 @@
-# React + TypeScript + Vite
+# KennyAI — Personal Gemini Companion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+KennyAI is a personal AI assistant inspired by Google Gemini and tuned to showcase Kehinde Salimonu’s work. The app focuses on a conversational experience that highlights personal branding, project insights, and community engagement.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Responsive layout with a collapsible sidebar and mobile-first navigation.
+- Persistent recent prompts (stored locally) for fast follow-up questions.
+- Gemini-powered responses, streamed and rendered progressively for natural pacing.
+- Personal quick actions that introduce projects, stack, and community goals.
+- Accessibility upgrades: keyboard-friendly controls, labelled inputs, polite live regions.
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+
+- A Google AI Studio API key with access to Gemini models.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install   # or pnpm install / yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Create an `.env` file at the project root with your Gemini key:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```env
+VITE_GOOGLE_API_KEY=your-google-genai-api-key
 ```
+
+### Development
+
+```bash
+npm run dev   # start Vite dev server
+```
+
+### Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Customising KennyAI
+
+- Update quick action tiles and CTA copy in `src/components/Main/Main.tsx`.
+- Replace brand colours or background gradients in `src/App.css` and `src/components/Main/Main.css`.
+- Tailor prompt persistence by adjusting the storage key inside `src/context/context.tsx`.
+
+## Tech Stack
+
+- React 18 + TypeScript
+- Vite tooling
+- Google GenAI SDK
+- Vanilla CSS modules
+
+## License
+
+This project is maintained as a personal showcase. Feel free to adapt the structure for your own portfolio; attribution is appreciated.
