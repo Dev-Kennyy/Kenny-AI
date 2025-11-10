@@ -94,7 +94,7 @@ export const Main = () => {
           <section className="hero">
             <div className="greet">
               <p>
-                <span>Hello Dear,</span>
+                <span>Hello Chief,</span>
               </p>
               <p>Thanks for exploring KennyAI personal lab.</p>
               <p className="greet-sub">Feel free to use me and recommend me to everyone!</p>
