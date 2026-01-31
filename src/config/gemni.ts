@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 const API_KEY = "AIzaSyAdS-mF6NOBfuiMyw6W-WvaBisgJiYD_cg";
-const MODEL = "gemini-2.0-flash";
+const MODEL = "gemini-2.5-flash";
 
 async function main(prompt: string): Promise<string> {
   if (!API_KEY) {
