@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = "AIzaSyAdS-mF6NOBfuiMyw6W-WvaBisgJiYD_cg";
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 const MODEL = "gemini-2.5-flash";
 
 async function main(prompt: string): Promise<string> {
